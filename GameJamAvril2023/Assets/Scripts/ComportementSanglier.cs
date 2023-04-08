@@ -10,6 +10,7 @@ public class ComportementSanglier : MonoBehaviour
     private float walkingSpeed = 5.0f;
     [SerializeField]
     private float jumpPower = 3.50f;
+    private bool isGrounded;
 
     private void Awake()
     {
@@ -22,6 +23,8 @@ public class ComportementSanglier : MonoBehaviour
         gameObject.transform.position = player.position;
 
         animalBody = gameObject.GetComponent<Rigidbody2D>();
+
+        isGrounded = false;
     }
     // Update is called once per frame
     void Update()
@@ -37,42 +40,52 @@ public class ComportementSanglier : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W)) //up key  
         {
-            // TODO => if grounded : 
-            animalBody.AddForce(Vector3.up * jumpPower * 100);
+            if (isGrounded)
+            {
+                animalBody.AddForce(Vector3.up * jumpPower * 100);
+            }
         }
         if (Input.GetKey(KeyCode.S)) //down key 
         {
-
+            //Nothing To Do
         }
         if (Input.GetKey(KeyCode.D)) // Right key 
         {
-            print("moving");
-            player.transform.Translate(Vector3.right * walkingSpeed * Time.deltaTime, Space.World);
-            animalBody.position = player.position;
-            //animalBody.AddForce(Vector3.right * walkingSpeed * 100);
-
+            if (isGrounded)
+            {
+                player.transform.Translate(Vector3.right * walkingSpeed * Time.deltaTime, Space.World);
+            }
+            else
+            {
+                animalBody.AddForce(Vector3.right * walkingSpeed);
+            }
         }
-        if (Input.GetKeyUp(KeyCode.D)) // Right key 
-        {
-
-            //animalBody.AddForce(-Vector3.right * walkingSpeed * 100);
-
-        }
-
         if (Input.GetKey(KeyCode.A)) // Left key
         {
-            //animalBody.AddForce(Vector3.left * walkingSpeed * 100);
-            player.transform.Translate(Vector3.left * walkingSpeed * Time.deltaTime, Space.World);
-            animalBody.position = player.position;
+            if (isGrounded)
+            {
+                player.transform.Translate(-Vector3.right * walkingSpeed * Time.deltaTime, Space.World);
+            }
+            else
+            {
+                animalBody.AddForce(Vector3.right * walkingSpeed);
+            }
         }
-        if (Input.GetKeyUp(KeyCode.A)) // Right key 
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Ground")
         {
-
-            //animalBody.AddForce(-Vector3.left * walkingSpeed * 100);
-
+            isGrounded = true;
         }
-        player.position= animalBody.position ;
-        gameObject.transform.position = player.position;
+    }
 
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
+        }
     }
 }
