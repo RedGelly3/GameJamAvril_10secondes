@@ -12,10 +12,7 @@ public class PlayerScript : MonoBehaviour
     private float walkingSpeed = 5.0f;
     [SerializeField]
     private float jumpPower = 3.50f;
-    private float aircontrol = 0.5f;
     private bool isGrounded;
-    public GameObject newTransformation;
-
     private void Awake()
     {
         player = gameObject.transform;
@@ -49,7 +46,8 @@ public class PlayerScript : MonoBehaviour
     void TransformationRoulette()
     {   
         GameObject transformationActuelle = FindTransformationActuelle(gameObject);
-        newTransformation = Instantiate(transformations[0], gameObject.transform.position, Quaternion.identity);
+        Debug.Log(transformationActuelle.name);
+        GameObject newTransformation = Instantiate(transformations[0], gameObject.transform.position, Quaternion.identity);
         //Vector2 playerVelocity = transformationActuelle.GetComponent<Rigidbody2D>().velocity;
         do
         {
@@ -73,12 +71,9 @@ public class PlayerScript : MonoBehaviour
         animalBody.mass = newTransformation.GetComponent<ValuesAnimal>().mass;
         jumpPower = newTransformation.GetComponent<ValuesAnimal>().jumpForce;
         walkingSpeed = newTransformation.GetComponent<ValuesAnimal>().speed;
-        aircontrol = newTransformation.GetComponent<ValuesAnimal>().aircontrol;
-        gameObject.GetComponent<CapsuleCollider2D>().direction = newTransformation.GetComponent<CapsuleCollider2D>().direction;
-        gameObject.GetComponent<CapsuleCollider2D>().size = newTransformation.GetComponent<CapsuleCollider2D>().size*newTransformation.transform.localScale.x;
-        gameObject.GetComponent<CapsuleCollider2D>().offset = newTransformation.GetComponent<CapsuleCollider2D>().offset* newTransformation.transform.localScale.x ;
-        gameObject.GetComponent<BoxCollider2D>().size = newTransformation.GetComponent<BoxCollider2D>().size * newTransformation.transform.localScale.x;
-        gameObject.GetComponent<BoxCollider2D>().offset = newTransformation.GetComponent<BoxCollider2D>().offset * newTransformation.transform.localScale.x;
+
+        
+        
         /*
         if (GetObjectNameWithoutCareForClone(newTransformation) == "Sanglier")
         {
@@ -150,11 +145,7 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                animalBody.AddForce(Vector3.right * aircontrol);
-            }
-            if (newTransformation.GetComponent<SpriteRenderer>().flipX)
-            {
-                newTransformation.GetComponent<SpriteRenderer>().flipX = !newTransformation.GetComponent<SpriteRenderer>().flipX;
+                animalBody.AddForce(Vector3.right * walkingSpeed);
             }
         }
         if (Input.GetKey(KeyCode.A)) // Left key
@@ -165,11 +156,7 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                animalBody.AddForce(-Vector3.right * aircontrol);
-            }
-            if (!newTransformation.GetComponent<SpriteRenderer>().flipX)
-            {
-                newTransformation.GetComponent<SpriteRenderer>().flipX = !newTransformation.GetComponent<SpriteRenderer>().flipX;
+                animalBody.AddForce(Vector3.right * walkingSpeed);
             }
         }
     }

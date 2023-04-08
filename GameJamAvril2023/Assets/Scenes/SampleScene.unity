@@ -132,10 +132,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 276227494}
-  - component: {fileID: 276227497}
-  - component: {fileID: 276227495}
   - component: {fileID: 276227498}
-  - component: {fileID: 276227499}
+  - component: {fileID: 276227497}
+  - component: {fileID: 276227496}
+  - component: {fileID: 276227495}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -156,7 +156,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 390843811}
-  - {fileID: 803568839}
+  - {fileID: 534537997}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -205,35 +205,8 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.22139406}
   m_EdgeRadius: 0
---- !u!50 &276227497
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276227492}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!70 &276227498
-CapsuleCollider2D:
+--- !u!61 &276227496
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -265,9 +238,46 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
---- !u!114 &276227499
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!50 &276227497
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276227492}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &276227498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,14 +286,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 276227492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1e76442c98901f44bc54e5d591c7843, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f7fac3c4595abd4092c5fdb28a2e347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 10
+  time: 0
   transformations:
-  - {fileID: 3642965577735521172, guid: 5623cc7cf76e1794a98efa9a1c3969bf, type: 3}
   - {fileID: 8964720159134037020, guid: 5421e9dcf3610eb41976dc5a0d3ecc62, type: 3}
-  player: {fileID: 276227494}
+  - {fileID: 3642965577735521172, guid: 5623cc7cf76e1794a98efa9a1c3969bf, type: 3}
+  player: {fileID: 0}
   walkingSpeed: 5
   jumpPower: 3.5
 --- !u!1 &387957660
@@ -47869,10 +47879,10 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!4 &803568839 stripped
+--- !u!4 &534537997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8845970048097243514, guid: 5623cc7cf76e1794a98efa9a1c3969bf, type: 3}
-  m_PrefabInstance: {fileID: 2002565151}
+  m_PrefabInstance: {fileID: 1900326862}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1895624431
 GameObject:
@@ -47919,7 +47929,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2002565151
+--- !u!1001 &1900326862
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -47933,7 +47943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8845970048097243514, guid: 5623cc7cf76e1794a98efa9a1c3969bf, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8845970048097243514, guid: 5623cc7cf76e1794a98efa9a1c3969bf, type: 3}
       propertyPath: m_LocalPosition.x
