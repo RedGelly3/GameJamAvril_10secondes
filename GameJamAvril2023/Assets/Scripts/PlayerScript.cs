@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     public double time;
     public List<GameObject> transformations;
+
     public Transform player;
     private Rigidbody2D animalBody;
     [SerializeField]
@@ -13,6 +14,10 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private float jumpPower = 3.50f;
     private bool isGrounded;
+
+    public GameObject nextTranformation;
+    public GameObject currentTransformation;
+
     private void Awake()
     {
         player = gameObject.transform;
@@ -31,18 +36,32 @@ public class PlayerScript : MonoBehaviour
 
     IEnumerator LaunchTime()
     {
+        float oldTime = Time.realtimeSinceStartup;
         while (true)
-        {
-            time -= 0.1f;
+        {   
+           
+            time -= Time.realtimeSinceStartup - oldTime;
+            oldTime = Time.realtimeSinceStartup;
+
             if (time <= 0.0f)
             {
                 TransformationRoulette();
                 time = 10.0f;
             }
-            yield return new WaitForSeconds(0.1f);
+            else if (time <= 5.0f)
+            {
+                TransformationRoulette();
+                time = 10.0f;
+            }
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
+    void Tranformation()
+    {
+
+
+    }
     void TransformationRoulette()
     {   
         GameObject transformationActuelle = FindTransformationActuelle(gameObject);
