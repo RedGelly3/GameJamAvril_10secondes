@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5119241681304082343}
   - component: {fileID: 3029559991448700186}
   - component: {fileID: 6510201094939587457}
+  - component: {fileID: -159755225196379468}
   m_Layer: 0
   m_Name: Sanglier
   m_TagString: Transformation
@@ -97,6 +98,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e209cc7b7859d441968005f3c832e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 1
+  jumpForce: 3
   mass: 1.75
-  speed: 1
+  speed: 5
+  aircontrol: 0.1
+--- !u!70 &-159755225196379468
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8964720159134037020}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1}
+  m_Direction: 0
