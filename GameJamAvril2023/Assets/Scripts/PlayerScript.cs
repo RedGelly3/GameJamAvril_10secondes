@@ -6,6 +6,8 @@ public class PlayerScript : MonoBehaviour
 {
     public double time;
     public List<GameObject> transformations;
+    public GameObject nextTranformation;
+    public GameObject currentTransformation;
     private void Awake()
     {
         time = 10.0f;
@@ -27,18 +29,32 @@ public class PlayerScript : MonoBehaviour
 
     IEnumerator LaunchTime()
     {
+        float oldTime = Time.realtimeSinceStartup;
         while (true)
-        {
-            time -= 0.1f;
+        {   
+           
+            time -= Time.realtimeSinceStartup - oldTime;
+            oldTime = Time.realtimeSinceStartup;
+
             if (time <= 0.0f)
             {
                 TransformationRoulette();
                 time = 10.0f;
             }
-            yield return new WaitForSeconds(0.1f);
+            else if (time <= 5.0f)
+            {
+                TransformationRoulette();
+                time = 10.0f;
+            }
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
+    void Tranformation()
+    {
+
+
+    }
     void TransformationRoulette()
     {   
         GameObject transformationActuelle = FindTransformationActuelle(gameObject);
