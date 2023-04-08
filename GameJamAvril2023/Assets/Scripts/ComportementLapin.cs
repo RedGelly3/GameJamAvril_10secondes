@@ -7,9 +7,11 @@ public class ComportementLapin : MonoBehaviour
     public Transform player;
     private Rigidbody2D animalBody;
     [SerializeField]
-    private float walkingSpeed = 1.5f;
+    private float walkingSpeed = 3.5f;
     [SerializeField]
     private float jumpPower = 3.0f;
+
+    private Vector2 InputVelocity;
 
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class ComportementLapin : MonoBehaviour
         gameObject.transform.position = player.position;
 
         animalBody = gameObject.GetComponent<Rigidbody2D>();
+        InputVelocity = Vector2.zero;
     }
     // Update is called once per frame
     void Update()
@@ -33,7 +36,8 @@ public class ComportementLapin : MonoBehaviour
 
     void Mouvement()
     {
-
+        animalBody.velocity.Set(animalBody.velocity.x - InputVelocity.x, animalBody.velocity.y - InputVelocity.y);
+        InputVelocity = Vector2.zero;
         //vitesse - InputVelocity 
 
         if (Input.GetKeyDown(KeyCode.W)) //up key  
@@ -45,30 +49,31 @@ public class ComportementLapin : MonoBehaviour
         {
 
         }
-        if (Input.GetKeyDown(KeyCode.D)) // Right key 
+        if (Input.GetKey(KeyCode.D)) // Right key 
         {
-
-            animalBody.AddForce(Vector3.right * walkingSpeed * 100);
+            InputVelocity += Vector2.right * walkingSpeed;
+            //animalBody.AddForce(Vector3.right * walkingSpeed * 100);
 
         }
         if (Input.GetKeyUp(KeyCode.D)) // Right key 
         {
 
-            animalBody.AddForce(-Vector3.right * walkingSpeed * 100);
+            //animalBody.AddForce(-Vector3.right * walkingSpeed * 100);
 
         }
 
-        if (Input.GetKeyDown(KeyCode.A)) // Left key
+        if (Input.GetKey(KeyCode.A)) // Left key
         {
-            animalBody.AddForce(Vector3.left * walkingSpeed * 100);
-
+            InputVelocity += Vector2.left * walkingSpeed;
+            //animalBody.AddForce(Vector3.left * walkingSpeed * 100);
         }
         if (Input.GetKeyUp(KeyCode.A)) // Right key 
         {
 
-            animalBody.AddForce(-Vector3.left * walkingSpeed * 100);
+            //animalBody.AddForce(-Vector3.left * walkingSpeed * 100);
 
         }
+        animalBody.velocity.Set(animalBody.velocity.x + InputVelocity.x, animalBody.velocity.y + InputVelocity.y);
         player.position = animalBody.position;
         gameObject.transform.position = player.position;
 

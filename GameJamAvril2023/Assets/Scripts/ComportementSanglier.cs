@@ -7,9 +7,9 @@ public class ComportementSanglier : MonoBehaviour
     public Transform player;
     private Rigidbody2D animalBody;
     [SerializeField]
-    private float walkingSpeed = 2.0f;
+    private float walkingSpeed = 5.0f;
     [SerializeField]
-    private float jumpPower = 0.8f;
+    private float jumpPower = 3.50f;
 
     private void Awake()
     {
@@ -33,7 +33,6 @@ public class ComportementSanglier : MonoBehaviour
 
     void Mouvement()
     {
-
         //vitesse - InputVelocity 
 
         if (Input.GetKeyDown(KeyCode.W)) //up key  
@@ -45,31 +44,34 @@ public class ComportementSanglier : MonoBehaviour
         {
 
         }
-        if (Input.GetKeyDown(KeyCode.D)) // Right key 
+        if (Input.GetKey(KeyCode.D)) // Right key 
         {
-
-            animalBody.AddForce(Vector3.right * walkingSpeed * 100);
+            print("moving");
+            player.transform.Translate(Vector3.right * walkingSpeed * Time.deltaTime, Space.World);
+            animalBody.position = player.position;
+            //animalBody.AddForce(Vector3.right * walkingSpeed * 100);
 
         }
         if (Input.GetKeyUp(KeyCode.D)) // Right key 
         {
 
-            animalBody.AddForce(-Vector3.right * walkingSpeed * 100);
+            //animalBody.AddForce(-Vector3.right * walkingSpeed * 100);
 
         }
 
-        if (Input.GetKeyDown(KeyCode.A)) // Left key
+        if (Input.GetKey(KeyCode.A)) // Left key
         {
-            animalBody.AddForce(Vector3.left * walkingSpeed * 100);
-
+            //animalBody.AddForce(Vector3.left * walkingSpeed * 100);
+            player.transform.Translate(Vector3.left * walkingSpeed * Time.deltaTime, Space.World);
+            animalBody.position = player.position;
         }
         if (Input.GetKeyUp(KeyCode.A)) // Right key 
         {
 
-            animalBody.AddForce(-Vector3.left * walkingSpeed * 100);
+            //animalBody.AddForce(-Vector3.left * walkingSpeed * 100);
 
         }
-        player.position = animalBody.position;
+        player.position= animalBody.position ;
         gameObject.transform.position = player.position;
 
     }
